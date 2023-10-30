@@ -36,7 +36,7 @@ class Solution {
             res.Add(1); // If there's still a carry, add a new most significant digit.
         
         for (int i = 0; i < n ; i++) {
-            if (A[i] == 0 && res.Count() == 0)
+            if (A[i] == 0 && res.Count() == 0)     //didnt get this condition
                 continue; // Skip leading zeros.
 
             res.Add(A[i]); // Add the digits to the result.
