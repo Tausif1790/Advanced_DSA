@@ -1,4 +1,29 @@
-﻿//------------------------------------------------------------------------------------------//
+﻿Find the maximum sum of contiguous non-empty subarray within an array A of length N.
+
+Input 1: A = [1, 2, 3, 4, -10] 
+Input 2: A = [-2, 1, -3, 4, -1, 2, 1, -5, 4] 
+Output 1: 10 
+Output 2: 6 
+
+//------------------------------//TC: O(n), SC: O(1) //Kadane's algo---------------------------------------------//
+class Solution {
+    public int maxSubArray(List<int> A) {
+        int ans = int.MinValue;
+        int sum = 0;
+
+        foreach(int el in A){
+            sum = sum + el;
+            ans = Math.Max(ans, sum);
+            if(sum < 0){
+                sum = 0;
+            }
+        }
+        return ans;
+    }
+}
+
+
+//------------------------------------------------------------------------------------------//
 // Approach 1: Using 3 nested loops (TC: O(n^3), SC: O(1)
 class Solution
 {

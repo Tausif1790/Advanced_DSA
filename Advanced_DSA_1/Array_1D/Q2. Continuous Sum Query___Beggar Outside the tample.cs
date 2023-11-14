@@ -8,7 +8,9 @@ For ith devotee B[i][0] = L, B[i][1] = R, B[i][2] = P, given by the 2D array B
 
 Input 1:- (1-idexing)
 A = 5
-B = [[1, 2, 10], [2, 3, 20], [2, 5, 25]]
+B =[[1, 2, 10],
+    [2, 3, 20],
+    [2, 5, 25]]
 
 Output 1:-
 10 55 45 25 25
@@ -41,4 +43,11 @@ class Solution {
 }
 
 //TC: (n+q)
+//SC: (1)
+
+//-------Brute force------------//
+for every query -
+    go and do the addition form idx to till end of the arry 
+
+//TC: (n*q)
 //SC: (1)
