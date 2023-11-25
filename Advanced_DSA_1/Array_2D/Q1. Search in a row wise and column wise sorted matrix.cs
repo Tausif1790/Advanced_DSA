@@ -4,6 +4,11 @@ In the given matrix every row and column is sorted in non-decreasing order. Find
 If A[i][j] = B then return (i * 1009 + j)
 If B is not present return -1.
 
+Note 1: Rows are numbered from top to bottom and columns are numbered from left to right.
+Note 2: If there are multiple B in A then return the smallest value of i*1009 +j such that A[i][j]=B.
+Note 3: Expected time complexity is linear
+Note 4: Use 1-based indexing
+
 Input 1:-
 A = [[1, 2, 3]   <----- start from here
      [4, 5, 6]

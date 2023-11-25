@@ -6,6 +6,10 @@ Input 1:
 Output 1:
 [1,6],[8,10],[15,18]
 
+//--------------------//Approach ------------------------------//
+is overlapping 
+yes -> goto next itr
+no -> merge previous into ans
 //--------------------------------------------------//
 using System.Collections.Generic;
 using System;
@@ -26,12 +30,12 @@ class Solution {
         intervals.Sort((a, b) => a.start - b.start);       //TC: O(nlog(n))  //SC: O(1)
 
         int n = intervals.Count;
-        int cs = intervals[0].start;               // current start
-        int ce = intervals[0].end;                 // current end
+        int cs = intervals[0].start;               //a1 // current start
+        int ce = intervals[0].end;                 //b1 // current end
 
         for(int i=1; i<n; i++){
-            int s = intervals[i].start;            // current start after above cs
-            int e = intervals[i].end;              // ||
+            int s = intervals[i].start;            //a2 // current start after above cs
+            int e = intervals[i].end;              //b2 // ||
 
             if(s <= ce){                           //a2 <= bl in notes // Overlapping intervals; update the current end. // in first input [1,3],[2,6]
                 ce = Math.Max(e, ce);              // we dont care about start, because start is sorted (first record start will be considered)

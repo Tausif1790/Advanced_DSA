@@ -8,7 +8,7 @@ Expected time complexity is O(rows + columns).
 
 Input 1:
 
- A = [   [0, 1, 1]       <----- start from here 
+ A = [   [0, 1, 1]       <----- start from here
          [0, 0, 1]
          [0, 1, 1]   ]
 Input 2:
@@ -39,6 +39,15 @@ se O(1)
                 ans = i;
             }
             i++;
+
+            // or
+            // if(A[i][j] == 1){
+            //     ans = i;
+            //     j--;
+            // }
+            // else{
+            //     i++;
+            // }
         }
         return ans;
     }

@@ -35,12 +35,12 @@ class Solution {
         int i = 0;
         int j = 0;
         int z = 1;
-        int loopPrint = A - 1;
+        int loopPrint = A - 1;                  //loopPrint => how many el get printed
 
-        while(loopPrint >= 0){
+        while(loopPrint >= 0){                  // if loopPrint is zero means only one element in matt
             // Set the center element when the matrix size is odd.
             if(loopPrint == 0){
-                //matrix[i][j] += 1;                 // this line is not working as expected
+                //matrix[i][j] += 1;            // this line is not working as expected
                 matrix[i][j] = z++;
                 break;
             }
@@ -72,7 +72,7 @@ class Solution {
             }
             i++;
             j++;
-            loopPrint -= 2;
+            loopPrint -= 2;       
         }
         return matrix;
     } 

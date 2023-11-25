@@ -29,7 +29,7 @@ class Solution {
 
             if(currSum > maxSum){
                 maxSum = currSum;
-                ans[0] = l + 1;           // l + 1 => because 1-indexing
+                ans[0] = l + 1;           // l + 1 => because 1-indexing // l and r will only update when currSum > maxSum
                 ans[1] = r + 1;           // Update the starting and ending index of the optimal subarray.
             }
 
