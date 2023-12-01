@@ -20,7 +20,7 @@ class Solution {
         int mod = (int)Math.Pow(10, 9) + 7;
         Dictionary<int, int> dict = new Dictionary<int, int>();
         foreach(int el in A){
-            int rem = el % B;
+            int rem = el % B;                 // nC2 => (n *(n-1))/2  // no. of el(n), forming pair(2)
 
             if(dict.ContainsKey(rem)){
                 int freq = dict[rem];
