@@ -7,6 +7,12 @@ class Program
     {
         //imp notes: Key are unordered
 
+        // All keys
+        foreach (string key in myDictionary.Keys)
+        {
+            Console.WriteLine(key);
+        }
+
         // Dictionary
         Console.WriteLine("Dictionary Operations:");
         var myDictionary = new Dictionary<string, int>();
