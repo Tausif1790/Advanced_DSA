@@ -96,3 +96,28 @@ char[] charArray = originalString.ToCharArray(); // ['H', 'e', 'l', 'l', 'o', ',
 
 // array to string
 string originalString = new string(charArray);
+
+//---------------------------// Using Compare method: //--------------------------------//
+int number = 42;
+string numberAsString = number.ToString();
+
+string str1 = "ax";
+string str2 = "ay";
+
+int result = str1.CompareTo(str2);
+
+if (result < 0) {
+    Console.WriteLine($"{str1} comes before {str2}.");
+}
+else if (result > 0) {
+    Console.WriteLine($"{str1} comes after {str2}.");
+}
+else {
+    Console.WriteLine($"{str1} and {str2} are equal.");
+}
+
+// opt:- ax comes before ay.
+
+//------------------------// StringBuilder//---------------//
+StringBuilder sb = new StringBuilder();  =>  //we need to use //using System.Text;
+sb.Append(A[i].ToString());              // we can use Append in StringBuilder  
