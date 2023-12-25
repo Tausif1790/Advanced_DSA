@@ -47,9 +47,8 @@ class Solution {
                     }
                 }
             }
-
             // Check if the target value is in the 1st part of the rotated array
-            if(target >= A[0]){
+            else{                           //target >= A[0]
                 // Target value in part 1 and midValue in part 2
                 if(A[midIdx] < A[0]){
                     end = midIdx - 1;
