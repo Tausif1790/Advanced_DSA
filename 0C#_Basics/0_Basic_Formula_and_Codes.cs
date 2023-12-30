@@ -13,4 +13,28 @@ class Solution {
 }
 //TC: Log(max(a,b))
 
-//----------------------------------------------------//
+//--------------------// Sorting //--------------------------------//
+intervals.Sort((a, b) => a.start - b.start);       // 1st way //TC: O(nlog(n))  //SC: O(1)
+
+intervals.Sort(new IntervalSort());                // 2nd way
+class IntervalSort : IComparer<Interval>{
+    public int Compare(Interval a, Interval b){
+        if(a.start < b.start){
+            return -1;
+        }
+        else if(a.start > b.start){
+            return 1;
+        }
+        return 0;
+    }
+}
+
+//-------------------// //Right most significant bit // example:- 000010 //---------------//
+int rmsb = x & twosCompliment(x);
+int twosCompliment(int a){
+        int num = ~a;
+        num = num + 1;
+        return num;
+    }
+
+//-------------------------------------------------------------------------------//

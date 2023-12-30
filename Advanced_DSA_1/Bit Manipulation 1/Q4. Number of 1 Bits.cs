@@ -47,13 +47,15 @@ class Solution {
 
 
 //------------------// Using Right shift operator // TC: O(1), SC: O(1)-------------------//
-int countTotalSetBit(int n){
-    int count = 0;
-    while(n>0){
-        if(n&1){
-            count++;
+class Solution {
+    public int numSetBits(int A) {
+        int count = 0;
+        while(A > 0){
+            if((A & 1) != 0){            // if(n&1) -> is not working
+                count++;
+            }
+            A = A >> 1;
         }
-        n = n>>1;           // Right shift by 1
+        return count;
     }
-    return count;
 }

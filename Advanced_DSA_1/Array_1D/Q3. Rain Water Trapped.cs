@@ -10,6 +10,47 @@ class Solution {
     public int trap(List<int> A) {
         int n = A.Count;
         int ans = 0;
+        List<int> pf = prefixLeftMax(A);
+        List<int> sf = suffixRightMax(A);
+
+        for(int i=1; i<n-1; i++){
+            int watrT = Math.Min(pf[i], sf[i]) - A[i];
+
+            if(watrT > 0){
+                ans = ans + watrT;
+            }
+        }
+        return ans;
+    }
+
+    List<int> prefixLeftMax(List<int> A){
+        List<int> pf = new List<int>(new int[A.Count]);
+        pf[0] = 0;
+        for(int i=1; i<A.Count; i++){
+            pf[i] = Math.Max(pf[i-1], A[i-1]);
+        }
+        return pf; 
+    }
+
+    List<int> suffixRightMax(List<int> A){
+        List<int> sf = new List<int>(new int[A.Count]);
+        int n = sf.Count;
+        sf[n-1] = 0;
+        for(int i=n-2; i>=0; i--){
+            sf[i] = Math.Max(sf[i+1], A[i+1]);
+        }
+        return sf; 
+    }
+}
+
+// TC: O(n)
+// SC: O(n)
+//-------------------------------// same //---------------------------------------------------//
+
+class Solution {
+    public int trap(List<int> A) {
+        int n = A.Count;
+        int ans = 0;
         List<int> pLM = PrefixLeftMax(A);
         List<int> sRM = suffixRightMax(A);
         sRM.Reverse();

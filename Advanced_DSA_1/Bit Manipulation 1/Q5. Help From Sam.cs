@@ -41,7 +41,19 @@ class Solution {
         return count;                           // Return the total count, which represents the minimum times help is needed from Sam.
     }
 }
-
+//(or)
+class Solution {
+    public int solve(int A) {
+        int count = 0;
+        while(A > 0){
+            if((A & 1) != 0){
+                count++;
+            }
+            A = A >> 1;
+        }
+        return count;
+    }
+}
 //-----------------------------------------//
 Claim :The number of times we would require help from sam is the number of bits that are set in A.
 
