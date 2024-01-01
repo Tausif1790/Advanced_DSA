@@ -16,37 +16,36 @@ class Solution {
         int n = A.Count;
         int m = B.Count;
         List<int> ans = new List<int>();
-        int i = 0, j = 0, idx = 0;  // Pointers for arrays A, B, and result
+        int i = 0, j = 0, idx = 0;
 
-        // Merge arrays A and B in sorted order
-        while (i < n && j < m) {
-            if (A[i] <= B[j]) {
-                ans.Add(A[i]);
-                idx++;
+        while(i<n && j<m){
+            if(A[i] <= B[j]){
+                ans.Add(A[i]);  // Add element from A to the result list
+                //idx++;
                 i++;
-            } else {
-                ans.Add(B[j]);
-                idx++;
+            }
+            else{
+                ans.Add(B[j]);  // Add element from B to the result list
+                //idx++;
                 j++;
             }
         }
 
-        // If there are remaining elements in A, add them to the result
-        while (i < n) {
-            ans.Add(A[i]);
-            idx++;
+        while(i<n){
+            ans.Add(A[i]);  // Add remaining elements from A to the result list
+            //idx++;
             i++;
         }
-
-        while (j < m) {
-            ans.Add(B[j]);
-            idx++;
+        while(j<m){
+            ans.Add(B[j]);  // Add remaining elements from B to the result list
+            //idx++;
             j++;
         }
 
         return ans;
     }
 }
+
 
 //TC: O(n)
 //SC: O(n)

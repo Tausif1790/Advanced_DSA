@@ -38,6 +38,28 @@ class Solution {
 
         return A;
     }
+    
+     // for positive only and above for both
+     public List<int> solve(List<int> A) {
+        int n = (int)Math.Pow(10, 5) + 1;
+        List<int> freq = new List<int>(new int[n]);
+
+        foreach(int el in A){
+            freq[el] = freq[el] + 1;
+        }
+
+        int idx = 0;
+
+        for(int i=0; i<n; i++){
+            int fr = freq[i];
+            for(int j=0;j<fr; j++){
+                A[idx] = i;
+                idx ++;
+            }
+        }
+
+        return A;
+    }
 
     // Helper method to find the minimum and maximum elements in the array
     public List<int> MinMaxEl(List<int> A) {

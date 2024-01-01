@@ -50,22 +50,10 @@ class Program
 		Console.WriteLine("First String in ArrayList: " + firstString); // First String in ArrayList: Hello
 		Console.WriteLine("ArrayList Count: " + arrayListCount); // ArrayList Count: 2
 
-		//----------------------------------------------------------------------------//
-        List<int> originalList = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
-        // Split the list into two parts
-        int splitIndex = 5;  // Index where the split should occur
-        List<int> firstPart = originalList.GetRange(0, splitIndex);
-        List<int> secondPart = originalList.GetRange(splitIndex, originalList.Count - splitIndex);
-
-        // Display the results
-        Console.WriteLine("Original List: " + string.Join(", ", originalList));
-        Console.WriteLine("First Part: " + string.Join(", ", firstPart));
-        Console.WriteLine("Second Part: " + string.Join(", ", secondPart));
-
-		//Original List: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-		//First Part: 1, 2, 3, 4, 5
-		//Second Part: 6, 7, 8, 9, 10
+		//-----------------------------// Range of array //-----------------------------------------------//
+		List<int> originalList = new List<int> { 15, 27, 98, 24, 51 };
+		List<int> extractedList = originalList.GetRange(1, 3);
+		In this example, extractedList will contain elements {27, 98, 24}, starting from index 1 and including 3 elements from the original list.
 
     }
 }
