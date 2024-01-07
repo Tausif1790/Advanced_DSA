@@ -2,7 +2,7 @@ class Solution {
     public List<int> Partition(List<int> A) {
         int pivotValue = A[0];          // Choose the first element as the pivot
 
-        int i = 0, j = A.Count - 1;     // Initialize pointers for partitioning
+        int i = 1, j = A.Count - 1;     // Initialize pointers for partitioning
 
         while(i<=j){                    // Continue partitioning until the pointers meet
             if(A[i] <= pivotValue){     // Move the left pointer to the right if element is less than or equal to the pivot

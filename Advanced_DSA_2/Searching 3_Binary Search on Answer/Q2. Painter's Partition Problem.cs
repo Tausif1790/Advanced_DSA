@@ -41,9 +41,9 @@ class Solution {
             // Check if it's possible to paint all boards within midTimeReq time
             if (IsPossible(C, A, midTimeReq)) {
                 ans = (midTimeReq * B) % mod;     // Calculate the total time required
-                end = midTimeReq - 1;
+                end = midTimeReq - 1;               // if possible go for lower time 
             } else {
-                start = midTimeReq + 1;
+                start = midTimeReq + 1;              // if not possible give more time to painters
             }
         }
 

@@ -37,4 +37,38 @@ int twosCompliment(int a){
         return num;
     }
 
-//-------------------------------------------------------------------------------//
+//----------------// count factor //-----------------------------------------//
+public int CountFactors(int number) {
+        if (number <= 0) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 1; i <= Math.Sqrt(number); i++) {
+            if (number % i == 0) {
+                count++;
+                if (number / i != i) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+//------------// Compare //---------------------------//
+if(A < B){
+    return -1;
+}
+else if(A > B){
+    return 1;
+}
+else{
+    return 0;
+}
+return 0;
+
+(or)
+return Math.Sign(pointA - pointB);
+(or)
+return pointA.CompareTo(pointB);
+
+A.Sort((a,b) => a - b);                 // we can do without create comparator class

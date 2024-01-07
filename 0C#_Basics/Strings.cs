@@ -104,9 +104,9 @@ string numberAsString = number.ToString();
 string str1 = "ax";
 string str2 = "ay";
 
-int result = str1.CompareTo(str2);
+int result = str1.CompareTo(str2);      // gives -ve //str1 is lexicographically less than str2
 
-if (result < 0) {
+if (result < 0) { 
     Console.WriteLine($"{str1} comes before {str2}.");
 }
 else if (result > 0) {
@@ -120,4 +120,5 @@ else {
 
 //------------------------// StringBuilder//---------------//
 StringBuilder sb = new StringBuilder();  =>  //we need to use //using System.Text;
-sb.Append(A[i].ToString());              // we can use Append in StringBuilder  
+sb.Append(A[i].ToString());                  // we can use Append in StringBuilder  
+return sb.ToString();                        // convert to sting

@@ -55,7 +55,7 @@ class FactorComparator : IComparer<int>{
             return 0;
         }
         int count = 0;
-        for (int i = 1; i <= Math.Sqrt(number); i++) {
+        for (int i = 1; i*i <= number; i++) {
             if (number % i == 0) {
                 count++;
                 if (number / i != i) {

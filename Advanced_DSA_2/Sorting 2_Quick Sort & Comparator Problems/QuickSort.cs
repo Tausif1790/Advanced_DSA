@@ -25,7 +25,7 @@ class Solution {
         int i = start + 1;
         int j = high;
 
-        while (i <= j) {
+        while (i <= j) {                    // imp condition
             if (A[i] <= pivotValue) {
                 i++;
             }

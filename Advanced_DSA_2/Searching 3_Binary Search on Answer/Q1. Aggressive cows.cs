@@ -46,7 +46,7 @@ class Solution {
     public bool checkAreAllCowsPlacedForDistance(List<int> A, int cows, int mid) {
         int n = A.Count;
         int currCows = 1;  // Number of cows placed with at least mid distance
-        int last = 0;
+        int last = 0;       // Index of the position where the last cow was placed
 
         for (int i = 0; i < n; i++) {
             if (A[i] - A[last] >= mid) {

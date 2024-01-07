@@ -76,10 +76,7 @@ class Solution {
             else if(A[midIdx] > A[midIdx - 1] && A[midIdx] < A[midIdx + 1]){
                 s = midIdx + 1;
             }
-            else if(A[midIdx] < A[midIdx - 1] && A[midIdx] > A[midIdx + 1]){
-                e = midIdx - 1;
-            }
-            else if(A[midIdx] < A[midIdx - 1] && A[midIdx] < A[midIdx + 1]){
+            else{                                       //(A[midIdx] < A[midIdx - 1] && A[midIdx] > A[midIdx + 1])
                 e = midIdx - 1;
             }
         }
@@ -88,4 +85,28 @@ class Solution {
         return 1;
     }
 }
+
+//-----------------------// help section //----------------------------------//
+public class Solution {
+    public int solve(List<int> A) {
+        int s = 0;
+        int e = A.Count - 1;
+
+        while (s <= e) {
+            int midIdx = (s + e) / 2;
+
+            if (midIdx > 0 && A[midIdx] < A[midIdx - 1]) {
+                e = midIdx - 1;
+            } else if (midIdx < A.Count - 1 && A[midIdx] < A[midIdx + 1]) {
+                s = midIdx + 1;
+            } else {
+                return A[midIdx];
+            }
+        }
+
+        // Default return (not strictly necessary in this problem).
+        return 1;
+    }
+}
+
 

@@ -25,3 +25,25 @@ class Solution {
     }
 }
 //time complexity : O(sqrt(A))
+
+//-------------------// Using BS //------------------------------//
+class Solution {
+    public int solve(int A) {
+        int start = 0, end = 1000*1000*1000, ans = 0;
+        while(start <= end){
+            int mid = (start + end)/2;
+
+            if((long)mid * (mid + 1) / 2 == A){     // mid * (mid + 1) / 2 => total no. of block used at mid-th point
+                return mid;
+            }
+            else if((long)mid * (mid + 1) / 2 > A)
+                end = mid - 1;   
+            else{
+                ans = mid;
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+}
+//TC: O(logN)

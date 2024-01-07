@@ -13,23 +13,23 @@ class Solution {
     public int solve(List<int> A) {
         int s = 0;
         int e = A.Count - 1;
+        if(A.Count == 1){
+            return A[0];
+        }
 
         while(s <= e){
             int midIdx = (s + e)/2;
             int fo = -1;  // First occurrence of repeated element
 
-            if(A.Count == 1){
-                return A[0];
-            }
-            else if(midIdx == 0){
+            else if(midIdx == 0){       // edge case
                 // Check if the current element is different from the next one
                 if(A[midIdx] != A[midIdx+1]){
                     return A[midIdx];
                 } else {
-                    fo = midIdx;
+                    fo = midIdx + 2;
                 }
             }
-            else if(midIdx == A.Count - 1){
+            else if(midIdx == A.Count - 1){     // edge case
                 // Check if the current element is different from the previous one
                 if(A[midIdx] != A[midIdx-1]){
                     return A[midIdx];
