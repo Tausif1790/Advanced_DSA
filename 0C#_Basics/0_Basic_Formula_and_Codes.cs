@@ -72,3 +72,49 @@ return Math.Sign(pointA - pointB);
 return pointA.CompareTo(pointB);
 
 A.Sort((a,b) => a - b);                 // we can do without create comparator class
+
+
+//---------------// Reverse StringBuilder/String //------------------//
+// Convert StringBuilder to string, then reverse the string
+string reversedString = sb.ToString();
+char[] reversedArray = reversedString.ToCharArray();
+Array.Reverse(reversedArray);
+
+// Create a new string from the reversed array
+return new string(reversedArray);
+
+//----------// Explicit conversions (Casting) //---------------------------------//
+// Integral Types
+        long longValue = 1234567890123456789L;
+        int intValue = (int)longValue;
+        Console.WriteLine($"Long value: {longValue}, Int value: {intValue}");
+
+        int intNumber = 65;
+        char charValue = (char)intNumber;
+        Console.WriteLine($"Int value: {intNumber}, Char value: {charValue}");
+
+        // Floating-Point Types
+        double doubleValue = 123.456;
+        float floatValue = (float)doubleValue;
+        Console.WriteLine($"Double value: {doubleValue}, Float value: {floatValue}");
+
+        // Other Conversions
+        string numericString = "987";
+        int parsedValue = int.Parse(numericString);
+        Console.WriteLine($"Parsed value from string: {parsedValue}");
+
+        // Note: Always handle potential exceptions in real-world scenarios, especially when parsing.
+
+        // String to Char
+        string charString = "A";
+        char charFromString = char.Parse(charString);
+        Console.WriteLine($"Parsed char from string: {charFromString}");
+
+        // ToString method
+
+        // Integral Types
+        int intValue = 123;
+        string intToString = intValue.ToString();
+        Console.WriteLine($"Int to String: {intToString}");
+
+

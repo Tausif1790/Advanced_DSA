@@ -122,3 +122,11 @@ else {
 StringBuilder sb = new StringBuilder();  =>  //we need to use //using System.Text;
 sb.Append(A[i].ToString());                  // we can use Append in StringBuilder  
 return sb.ToString();                        // convert to sting
+
+// Convert StringBuilder to string, then reverse the string
+        string reversedString = sb.ToString();
+        char[] reversedArray = reversedString.ToCharArray();
+        Array.Reverse(reversedArray);
+
+        // Create a new string from the reversed array
+        return new string(reversedArray);
