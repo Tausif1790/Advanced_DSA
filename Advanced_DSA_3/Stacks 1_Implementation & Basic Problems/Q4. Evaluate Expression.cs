@@ -15,7 +15,7 @@ class Solution {
         for(int i = 0; i < A.Count; i++) {
             string str = A[i];
 
-            if (!isOperand(str)) {               // check its not operand
+            if (!isOperator(str)) {               // check its not operand
                 int intVal = int.Parse(str);
                 st.Push(intVal);
             } else {
@@ -52,7 +52,7 @@ class Solution {
         return result;
     }
 
-    public bool isOperand(string str) {
+    public bool isOperator(string str) {
         if (str == "+" || str == "-" || str == "*" || str == "/") {
             return true;
         }
