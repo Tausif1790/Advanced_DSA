@@ -42,7 +42,7 @@ class Solution {
         Swap(A, start, j);
 
         return j;            // This el is 54 because we are swapping last el with el at idx j
-                            // so now at j 54 is present which is initial pivot el // so we are returning ind of pivotValue
+                             // so now at j 54 is present which is initial pivot el // so we are returning ind of pivotValue
     }
 
     private void Swap(List<int> A, int a, int b) {

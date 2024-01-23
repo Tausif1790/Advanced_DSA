@@ -8,7 +8,45 @@ Input 2: A = [-1, 2, -1]
 Output 1: 3
 Output 2: 1
 
-//----------------------------------------------------------/
+//------------------------// O(n),O(n) ----------------------------------//
+
+class Solution {
+    long mod = (long)Math.Pow(10, 9) + 7;
+    public int solve(List<int> A) {
+        long count = 0;
+        Dictionary<long, long> dict = new Dictionary<long, long>();
+        List<long> pf = PrefixSum(A);
+        
+        foreach(long el in pf){
+            if(el == 0){
+                count++;                 // Increment count for zero prefix sum
+            }
+
+            if(dict.ContainsKey(el)){
+                count += dict[el];       // Increment count by the frequency of the current prefix sum (like Count AG pair sum)
+                long freq = dict[el];
+                dict[el] = freq + 1;         // Update the frequency of the current prefix sum
+            } else {
+                dict.Add(el, 1);             // Add the current prefix sum to the dictionary
+            }
+        }
+
+        return (int)(count % mod);
+    }
+
+    public List<long> PrefixSum(List<int> A) {
+        int n = A.Count;
+        List<long> pf = new List<long>();
+        pf.Add(A[0]);
+
+        for(int i = 1; i < n; i++) {
+            pf.Add(pf[i - 1] + A[i]);
+        }
+        return pf;
+    }
+}
+
+//------------------------// O(n),O(n) ----------------------------------//
 class Solution {
     public int solve(List<int> A) {
         long mod = (long)Math.Pow(10, 9) + 7;
