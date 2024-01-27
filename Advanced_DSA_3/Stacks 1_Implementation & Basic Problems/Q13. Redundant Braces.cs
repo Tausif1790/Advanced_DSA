@@ -16,7 +16,7 @@ class Solution {
         for (int i = 0; i < n; i++) {
             char ch = A[i];
 
-            if (isOperarand(ch)) { // If it's an operand, push onto the stack
+            if (isOperator(ch)) { // If it's an operand, push onto the stack
                 st.Push(ch);
             } else if (ch == ')') {
                 if (st.Peek() == '(') { // If the top of the stack is '(', it means redundant brackets
@@ -35,7 +35,7 @@ class Solution {
         return 0; // No redundant brackets found
     }
 
-    public bool isOperarand(char ch) {
+    public bool isOperator(char ch) {
         if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(') {
             return true; // Returns true if the character is an operand or an opening bracket
         }
