@@ -34,7 +34,7 @@ public class Solution {
         // Step 2: Copy random pointers
         RandomListNode x = head;
         while(x != null){
-            RandomListNode y = x.next;
+            RandomListNode y = x.next;          //==> imp // we put it here to avoid null pointer exeption 
             if(x.random != null){
                 y.random = x.random.next;
             }

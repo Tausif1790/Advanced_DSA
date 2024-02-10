@@ -24,7 +24,7 @@ Input :
 //-------------------------//   //---------------------------//
 class Solution {
     int capacity;
-    Dictionary<int, ListNode> dict = new Dictionary<int, ListNode>(); // key, ListNode
+    Dictionary<int, ListNode> dict = new Dictionary<int, ListNode>(); //key, ListNode (only address of node)
     ListNode head = null;
     ListNode tail = null;
 
