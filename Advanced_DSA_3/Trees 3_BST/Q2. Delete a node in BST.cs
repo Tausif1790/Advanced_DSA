@@ -47,10 +47,11 @@ class Solution {
     public TreeNode solve(TreeNode A, int B) {
         // Base case: If the current node is null or the node to be deleted is found
         if(A == null) return null;
-        if(A.val == B && A.left == null && A.right == null) return null;
-        if(A.val == B && A.left != null && A.right == null) return A.left;
+        if(A.val == B && A.left == null && A.right == null) return null;        // case 1
+        if(A.val == B && A.left != null && A.right == null) return A.left;      // case 2
         if(A.val == B && A.left == null && A.right != null) return A.right;
         
+        // case 3
         if(A.val == B){
             // If the node to be deleted has both left and right children
             TreeNode curr = A.left;
@@ -62,6 +63,8 @@ class Solution {
             A.left = solve(A.left, B);      // Recursively delete the node in the left subtree
             return A;
         }
+
+        // finding node to delete
         if(B < A.val){
             //return solve(A.left, B);      // previous mistake
             A.left = solve(A.left, B);      // If the value to be deleted is less than the current node's value, search in the left subtree

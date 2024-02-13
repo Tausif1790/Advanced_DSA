@@ -32,7 +32,7 @@ class Solution {
 
     public TreeNode Build(List<int> A, int start, int end){
         if(start > end) return null;
-        if(start == end){
+        if(start == end){                   // // optional condition
             return new TreeNode(A[start]);
         }
 
