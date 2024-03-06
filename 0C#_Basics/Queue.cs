@@ -107,7 +107,35 @@ class QueueWithRear<T>
     }
 }
 
+//----------------------------------------------// Deque (Java) //-----------------------------------------------------//
+
+import java.util.Deque;
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a Deque using LinkedList
+        Deque<Integer> deque = new LinkedList<>();
+
+        // Adding elements to the front and end of the deque
+        deque.addFirst(1);
+        deque.addLast(2);
+        deque.addFirst(3);
+
+        // Peeking at the first and last elements
+        System.out.println("Deque: " + deque.peekFirst() + " " + deque.peekLast());
+
+        // Removing elements from the front and end of the deque
+        deque.removeFirst();
+        deque.removeLast();
+
+        // Checking deque size
+        System.out.println("Deque size: " + deque.size());
+    }
+}
+
 //----------------------------------------------// Deque //-----------------------------------------------------//
+
 using System;
 using System.Collections.Generic;
 

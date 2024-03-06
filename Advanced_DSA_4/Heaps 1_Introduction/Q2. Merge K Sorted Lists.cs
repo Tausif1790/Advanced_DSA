@@ -1,3 +1,20 @@
+Input 1:
+ 1 -> 10 -> 20
+ 4 -> 11 -> 13
+ 3 -> 8 -> 9
+Input 2:
+ 10 -> 12
+ 13
+ 5 -> 6
+
+ 1 -> 3 -> 4 -> 8 -> 9 -> 10 -> 11 -> 13 -> 20
+Output 2: 5 -> 6 -> 10 -> 12 ->13
+
+//-----------------------------------------------------//
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -6,229 +23,67 @@
  *     ListNode(int x) { val = x; next = null; }
  * }
  */
-using System.Collections.Generic;
-using System;
 
-class PriorityQueue<T> {
-    class Node {
-        public int Priority { get; set; }
-        public T Object { get; set; }
+public class Solution {
+   // Function to merge k sorted linked lists.
+    public ListNode mergeKLists(ArrayList<ListNode> lists) {
+        // Get the number of lists (k)
+        int k = lists.size();
+        // Create an array to store the head nodes of all lists
+        ListNode[] listNodesArray = new ListNode[k];
+
+        // Copy the head nodes of all the k lists into 'listNodesArray'
+        for (int i = 0; i < k; i++) {
+            listNodesArray[i] = lists.get(i);
+        }
+
+        // Call the merge method to merge k sorted linked lists
+        return merge(listNodesArray, k);
     }
 
-    //object array
-    List<Node> queue = new List<Node>();
-    int heapSize = -1;
-    bool _isMinPriorityQueue;
-    public int Count { get { return queue.Count; } }
-    /// <summary>
-    /// If min queue or max queue
-    /// </summary>
-    /// <param name="isMinPriorityQueue"></param>
-    public PriorityQueue(bool isMinPriorityQueue) {
-        _isMinPriorityQueue = isMinPriorityQueue;
+    // Function to merge k sorted linked lists using a PriorityQueue
+    private ListNode merge(ListNode[] lists, int k) {
+        // Initialize a min-heap priority queue of ListNode objects
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((node1, node2) -> node1.val - node2.val);
+
+        // Push the head nodes of all the k lists into the PriorityQueue
+        for (int i = 0; i < k; i++) {
+            if (lists[i] != null) {
+                pq.add(lists[i]);
+            }
+        }
+
+        // Create a dummy node to simplify the code
+        ListNode dummy = new ListNode(-1);
+        // 'last' will be used to keep track of the last node in the merged list
+        ListNode last = dummy;
+
+        // Continue until the PriorityQueue is not empty
+        while (!pq.isEmpty()) {
+            // Get the node with the smallest value from the PriorityQueue
+            ListNode current = pq.remove();
+
+            // Add the current node to the merged list
+            last.next = current;
+            last = last.next;
+
+            // Check if there is a next node in the current list and add it to the PriorityQueue
+            if (current.next != null) {
+                pq.add(current.next);
+            }
+        }
+
+        // Return the next of the dummy node, which is the actual head of the merged list.
+        return dummy.next;
     }
-    
-    private void Swap(int i, int j) {
-        var temp = queue[i];
-        queue[i] = queue[j];
-        queue[j] = temp;
-    }
 
-    private int ChildL(int i) {
-        return i * 2 + 1;
-    }
-
-    private int ChildR(int i) {
-        return i * 2 + 2;
-    }
-    
-    private void MaxHeapify(int i) {
-		int left = ChildL(i);
-		int right = ChildR(i);
-
-		int heighst = i;
-
-		if (left <= heapSize && queue[heighst].Priority < queue[left].Priority)
-		    heighst = left;
-		if (right <= heapSize && queue[heighst].Priority < queue[right].Priority)
-		    heighst = right;
-
-		if (heighst != i) {
-		    Swap(heighst, i);
-		    MaxHeapify(heighst);
-		}
-	}
-	private void MinHeapify(int i) {
-		int left = ChildL(i);
-		int right = ChildR(i);
-
-		int lowest = i;
-
-		if (left <= heapSize && queue[lowest].Priority > queue[left].Priority)
-		    lowest = left;
-		if (right <= heapSize && queue[lowest].Priority > queue[right].Priority)
-		    lowest = right;
-
-		if (lowest != i) {
-		    Swap(lowest, i);
-		    MinHeapify(lowest);
-		}
-	}
-	
-
-	/// <summary>
-	/// Maintain max heap
-	/// </summary>
-	/// <param name="i"></param>
-	private void BuildHeapMax(int i) {
-		while (i >= 0 && queue[(i - 1) / 2].Priority < queue[i].Priority) {
-		    Swap(i, (i - 1) / 2);
-		    i = (i - 1) / 2;
-		}
-	}
-	/// <summary>
-	/// Maintain min heap
-	/// </summary>
-	/// <param name="i"></param>
-	private void BuildHeapMin(int i) {
-		while (i >= 0 && queue[(i - 1) / 2].Priority > queue[i].Priority) {
-		    Swap(i, (i - 1) / 2);
-		    i = (i - 1) / 2;
-		}
-	}
-	
-	/// <summary>
-	/// Enqueue the object with priority
-	/// </summary>
-	/// <param name="priority"></param>
-	/// <param name="obj"></param>
-	public void Enqueue(int priority, T obj) {
-		Node node = new Node() { Priority = priority, Object = obj };
-		queue.Add(node);
-		heapSize++;
-		//Maintaining heap
-		if (_isMinPriorityQueue)
-		    BuildHeapMin(heapSize);
-		else
-		    BuildHeapMax(heapSize);
-	}
-	
-	/// <summary>
-	/// Dequeue the object
-	/// </summary>
-	/// <returns></returns>
-	public T Dequeue() {
-		if (heapSize > -1) {
-		    var returnVal = queue[0].Object;
-		    queue[0] = queue[heapSize];
-		    queue.RemoveAt(heapSize);
-		    heapSize--;
-		    //Maintaining lowest or highest at root based on min or max queue
-		    if (_isMinPriorityQueue)
-		        MinHeapify(0);
-		    else
-		        MaxHeapify(0);
-		    return returnVal;
-		}
-		else
-		    throw new Exception("Queue is empty");
-	}
-	
-	/// <summary>
-	/// Updating the priority of specific object
-	/// </summary>
-	/// <param name="obj"></param>
-	/// <param name="priority"></param>
-	public void UpdatePriority(T obj, int priority) {
-		int i = 0;
-		for (; i <= heapSize; i++) {
-		    Node node = queue[i];
-		    if (object.ReferenceEquals(node.Object, obj)) {
-		        node.Priority = priority;
-		        if (_isMinPriorityQueue) {
-		            BuildHeapMin(i);
-		            MinHeapify(i);
-		        }
-		        else {
-		            BuildHeapMax(i);
-		            MaxHeapify(i);
-		        }
-		    }
-		}
-	}
-	/// <summary>
-	/// Searching an object
-	/// </summary>
-	/// <param name="obj"></param>
-	/// <returns></returns>
-	public bool IsInQueue(T obj) {
-		foreach (Node node in queue)
-		    if (object.ReferenceEquals(node.Object, obj))
-		        return true;
-		return false;
-	}
-	
-	public T Top() {
-	    
-	    if(heapSize > -1) {
-	        var returnVal = queue[0].Object;
-	        return returnVal;
-	    }else
-		    throw new Exception("Queue is empty");
-	}
+    // // Custom comparer to compare ListNode based on their values
+    // private class ListNodeComparer : IComparer<ListNode> {
+    //     public int Compare(ListNode x, ListNode y) {
+    //         return x.val - y.val;
+    //     }
+    // }
 }
 
-
-class Solution {
-    
-	public ListNode mergeKLists(List<ListNode> A) {
-	    
-	    Dictionary<int, List<ListNode>> map = new Dictionary<int, List<ListNode>>();
-	    ListNode node;
-	    List<ListNode> list;
-	    int val;
-	    
-	    foreach(ListNode heads in A) {
-	        node = heads	;
-	        while (node != null) {
-	            val = node.val;
-	            
-	            if (map.ContainsKey(val)) {
-	                list = map[val];
-	                list.Add(node);
-	            } else {
-	                list = new List<ListNode>();
-	                list.Add(node);
-	                map[val] = list;
-	            }
-	            
-	            node = node.next;
-	        }
-	    }
-	    PriorityQueue<List<ListNode>> pq = new PriorityQueue<List<ListNode>>(true);
-	    
-	    ListNode head = null;
-	    node = null;
-	    
-	    foreach(KeyValuePair<int, List<ListNode>> entry in map) {
-	        
-	        list = entry.Value;
-	        pq.Enqueue(entry.Key, entry.Value);
-	        
-	    }
-	    while(pq.Count > 0){
-	    	list = pq.Dequeue();
-	    	foreach(ListNode n in list) {
-		        if (head == null)
-		            head = n;
-		        if (node != null)
-		            node.next = n;
-		        node = n;
-		    }
-			
-	    }
-	    
-	    return head;
-	    
-	}
-}
+// TC: O(x * n)
+// x: total no. of els in all LL, n: no. of LL

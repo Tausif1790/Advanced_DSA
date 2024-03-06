@@ -19,6 +19,61 @@ Input 2:
 
  A = [1, 2, 3]
  B = [4, 5]
+
+ //---------------------// TC: O(n): SC: O(1) //--------------------//
+class Solution {
+    public ListNode getIntersectionNode(ListNode A, ListNode B) {
+        if (A == null || B == null) {
+            return null;
+        }
+        // Count the number of nodes in each linked list
+        int la = Count(A);
+        int lb = Count(B);
+
+        // Adjust the starting point of the longer linked list
+        if (la > lb) {
+            for (int i = 0; i < la - lb; i++) {
+                A = A.next;
+            }
+        }
+        if (la < lb) {
+            for (int i = 0; i < lb - la; i++) {
+                B = B.next;
+            }
+        }
+
+        // Traverse both linked lists until an intersection is found
+        ListNode curr1 = A;
+        ListNode curr2 = B;
+        while (curr1 != null && curr2 != null) {
+            // If intersection is found, return the intersecting node
+            if (curr1 == curr2) {
+                return curr1;
+            }
+            curr1 = curr1.next;
+            curr2 = curr2.next;
+        }
+
+        // No intersection found
+        return null;
+    }
+
+    // Count the number of nodes in a linked list
+    public int Count(ListNode head) {
+        if (head == null) {
+            return 0;
+        }
+
+        ListNode curr = head;
+        int count = 0;
+        while (curr != null) {
+            count++;
+            curr = curr.next;
+        }
+        return count;
+    }
+}
+
  //----------------------------------------------------//
  /**
  * Definition for singly-linked list.
