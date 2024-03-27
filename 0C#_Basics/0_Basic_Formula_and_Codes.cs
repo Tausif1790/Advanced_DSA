@@ -29,6 +29,9 @@ class IntervalSort : IComparer<Interval>{
     }
 }
 
+// Sort the array using a custom comparison
+Array.Sort(myArray, (a, b) => a - b);
+
 //-------------------// //Right most significant bit // example:- 000010 //---------------//
 int rmsb = x & twosCompliment(x);
 int twosCompliment(int a){
